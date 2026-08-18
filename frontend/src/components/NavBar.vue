@@ -7,6 +7,7 @@
             <li><RouterLink to="/news">相關新聞</RouterLink></li>
             <li v-if="!isLoggedIn"><RouterLink to="/login">登入</RouterLink></li>
             <li v-else @click="logout">Hi, {{getUserName}}! 登出</li>
+            <li class="author">{{ authorEmail }}</li>
         </ul>
     </nav>
 </template>
@@ -16,6 +17,11 @@ import { useAuthStore } from '@/stores/auth';
 
 export default {
     name: 'NavBar',
+    data() {
+        return {
+            authorEmail: 'aa0963666696@gmail.com'
+        };
+    },
     computed: {
         isLoggedIn(){
             const userStore = useAuthStore();
@@ -63,6 +69,16 @@ export default {
     color: #575B5D;
     margin: 0 .5em;
     font-size: 1.2em;
+}
+
+.navbar li.author {
+    color: #8a8f92;
+    font-size: .95em;
+}
+
+.navbar li.author:hover{
+    font-weight: normal;
+    cursor: default;
 }
 
 .navbar li:hover{
